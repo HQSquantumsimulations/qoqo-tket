@@ -4,11 +4,11 @@
 """package to compile and run qoqo programms with tket."""
 
 from qoqo import Circuit, QuantumProgram
-from qoqo_qasm import QasmBackend, qasm_str_to_circuit
-from pytket.qasm import circuit_from_qasm_str, circuit_to_qasm_str
-from pytket.backends import Backend
-from pytket.backends.backendresult import BackendResult
-from pytket.extensions.qiskit import AerBackend
+from qoqo_qasm import QasmBackend, qasm_str_to_circuit  # type: ignore
+from pytket.qasm import circuit_from_qasm_str, circuit_to_qasm_str  # type: ignore
+from pytket.backends import Backend  # type: ignore
+from pytket.backends.backendresult import BackendResult  # type: ignore
+from pytket.extensions.qiskit import AerBackend  # type: ignore
 from typing import Any, Dict, List, Optional, Tuple, Union
 from qoqo.measurements import (  # type:ignore
     PauliZProduct,
@@ -27,10 +27,10 @@ class QoqoTketBackend:
         """Init for Tket backend settings.
 
         Args:
-            qiskit_backend (Backend): Qiskit backend instance to use for the simulation.
+            tket_backend (Backend): Tket backend instance to use for the simulation.
 
         Raises:
-            TypeError: the input is not a valid Qiskit Backend instance.
+            TypeError: the input is not a valid Tket Backend instance.
         """
         if tket_backend is None:
             self.tket_backend = AerBackend()
@@ -52,8 +52,8 @@ class QoqoTketBackend:
         """
         circuits_is_list = isinstance(circuits, list)
 
-        if not isinstance(circuits, Circuit) and not circuits_is_list:
-            raise TypeError("The input is not a valid Qoqo Circuit instance.")
+        # if not isinstance(circuits, Circuit) and not circuits_is_list:
+        #     raise TypeError("The input is not a valid Qoqo Circuit instance.")
 
         circuits = circuits if circuits_is_list else [circuits]
 
@@ -255,7 +255,7 @@ class QoqoTketBackend:
         Dict[str, List[List[float]]],
         Dict[str, List[List[complex]]],
     ]:
-        """Run all circuits of a measurement with the Qiskit backend.
+        """Run all circuits of a measurement with the Tket backend.
 
         Args:
             measurement: The measurement that is run.
@@ -308,7 +308,7 @@ class QoqoTketBackend:
         self,
         measurement: Any,
     ) -> Optional[Dict[str, float]]:
-        """Run a circuit with the Qiskit backend.
+        """Run a circuit with the Tket backend.
 
         Args:
             measurement: The measurement that is run.
