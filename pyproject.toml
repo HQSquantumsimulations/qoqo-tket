@@ -13,8 +13,12 @@ dependencies = [
     "pydantic",
     "qoqo>=1.9",
     "qoqo_qasm>=0.10.1",
-    "pytket",
-    "pytket-projectq",
+    "pytket >= 1.29",
+    "qiskit >= 1.1",
+    "qiskit-algorithms >= 0.3.0",
+    "qiskit-ibm-runtime >= 0.24.1",
+    "qiskit-aer >= 0.14.2",
+    "numpy >= 1.26.4",
 ]
 
 [project.optional-dependencies]
