@@ -7,7 +7,6 @@ from qoqo import Circuit, QuantumProgram
 from qoqo_qasm import QasmBackend, qasm_str_to_circuit  # type: ignore
 from pytket.qasm import circuit_from_qasm_str, circuit_to_qasm_str  # type: ignore
 from pytket.backends import Backend  # type: ignore
-from pytket.backends.backendresult import BackendResult  # type: ignore
 from pytket.extensions.qiskit import AerBackend  # type: ignore
 from typing import Any, Dict, List, Optional, Tuple, Union
 from qoqo.measurements import (  # type:ignore
@@ -19,6 +18,7 @@ from qoqo.measurements import (  # type:ignore
 
 
 class QoqoTketBackend:
+    """Run a Qoqo QuantumProgram or circuit  on a Tket backend."""
 
     def __init__(
         self,
@@ -34,8 +34,6 @@ class QoqoTketBackend:
         """
         if tket_backend is None:
             self.tket_backend = AerBackend()
-        elif not isinstance(tket_backend, Backend):
-            raise TypeError("The input is not a valid Tket Backend instance.")
         else:
             self.tket_backend = tket_backend
 
@@ -52,8 +50,8 @@ class QoqoTketBackend:
         """
         circuits_is_list = isinstance(circuits, list)
 
-        # if not isinstance(circuits, Circuit) and not circuits_is_list:
-        #     raise TypeError("The input is not a valid Qoqo Circuit instance.")
+        if not isinstance(circuits, Circuit) and not circuits_is_list:
+            raise TypeError("The input is not a valid Qoqo Circuit instance.")
 
         circuits = circuits if circuits_is_list else [circuits]
 
@@ -101,12 +99,12 @@ class QoqoTketBackend:
     ]:
         """Use a tket backend to run qoqo circuit(s).
 
-                Args:
-                    circuits (Union[Circuit, list[Circuit]]): qoqo circuit(s)
-                    n_shots (Union[int, list[int], None]): number of shots for each circuit
+        Args:
+            circuits (Union[Circuit, list[Circuit]]): qoqo circuit(s)
+            n_shots (Union[int, list[int], None]): number of shots for each circuit
 
-                Returns:
-                    Union[
+        Returns:
+            Union[
             Tuple[
                 Dict[str, List[List[bool]]],
                 Dict[str, List[List[float]]],
