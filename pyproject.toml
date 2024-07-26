@@ -14,6 +14,7 @@ dependencies = [
     "qoqo>=1.9",
     "qoqo_qasm>=0.12.1",
     "pytket >= 1.28",
+    "pytket-qiskit",
     "qiskit >= 1.1",
     "qiskit-algorithms >= 0.3.0",
     "qiskit-ibm-runtime >= 0.24.1",
@@ -22,7 +23,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-tests = ["coverage", "pytest"]
+tests = ["coverage", "pytest", "pytket-projectq"]
 dev = [
     "bandit",
     "black",
