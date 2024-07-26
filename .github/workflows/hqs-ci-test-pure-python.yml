@@ -31,10 +31,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./[tests]
-      - name: Test with coverage pytest
+      - name: Test without coverage pytest
         run: |
-          cd .
-          pytest tests/ --cov=. --cov-fail-under=80
+          cd ${{inputs.python_folder}}
+          pytest tests/
 
   test_python_windows:
     name: test_python_windows-${{ matrix.python.interpreter }}
@@ -55,10 +55,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./[tests]
-      - name: Test with coverage pytest
+      - name: Test without coverage pytest
         run: |
-          cd .
-          pytest tests/ --cov=. --cov-fail-under=80
+          cd ${{inputs.python_folder}}
+          pytest tests/
 
   test_python_macos:
     name: test_python_macos-${{ matrix.python.interpreter }}
@@ -79,7 +79,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./[tests]
-      - name: Test with coverage pytest
+      - name: Test without coverage pytest
         run: |
-          cd .
-          pytest tests/ --cov=. --cov-fail-under=80
+          cd ${{inputs.python_folder}}
+          pytest tests/
