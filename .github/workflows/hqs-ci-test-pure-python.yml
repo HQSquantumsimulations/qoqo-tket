@@ -33,7 +33,7 @@ jobs:
           pip install ./[tests]
       - name: Test without coverage pytest
         run: |
-          cd ${{inputs.python_folder}}
+          cd .
           pytest tests/
 
   test_python_windows:
@@ -57,7 +57,7 @@ jobs:
           pip install ./[tests]
       - name: Test without coverage pytest
         run: |
-          cd ${{inputs.python_folder}}
+          cd .
           pytest tests/
 
   test_python_macos:
@@ -81,5 +81,5 @@ jobs:
           pip install ./[tests]
       - name: Test without coverage pytest
         run: |
-          cd ${{inputs.python_folder}}
+          cd .
           pytest tests/
