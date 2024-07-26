@@ -7,12 +7,12 @@ authors = [
 maintainers = [
     { name = "HQS Quantum Simulations GmbH", email = "info@quantumsimulations.de" },
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
     "pydantic",
     "qoqo>=1.9",
-    "qoqo_qasm>=0.10.1",
+    "qoqo_qasm>=0.12.1",
     "pytket >= 1.28",
     "qiskit >= 1.1",
     "qiskit-algorithms >= 0.3.0",
