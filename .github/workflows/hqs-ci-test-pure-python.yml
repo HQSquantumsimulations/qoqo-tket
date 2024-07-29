@@ -30,6 +30,7 @@ jobs:
           python-version: ${{ matrix.python.py }}
       - name: Install dependencies
         run: |
+          pip install -U pip setuptools 
           pip install ./[tests]
       - name: Test without coverage pytest
         run: |
