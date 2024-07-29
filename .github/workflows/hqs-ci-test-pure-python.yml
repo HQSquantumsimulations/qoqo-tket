@@ -30,6 +30,7 @@ jobs:
           python-version: ${{ matrix.python.py }}
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install setuptools
           pip install --upgrade setuptools
           pip install ./[tests]
