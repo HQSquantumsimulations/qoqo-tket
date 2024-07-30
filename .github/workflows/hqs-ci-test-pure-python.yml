@@ -55,11 +55,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./[tests]
-          python -m pip install pytest==4.6.11
       - name: Test without coverage pytest
         run: |
           cd .
-          pytest tests/
+          pytest -p no:faulthandler tests/
 
   test_python_macos:
     name: test_python_macos-${{ matrix.python.interpreter }}
