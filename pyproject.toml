@@ -10,7 +10,6 @@ maintainers = [
 requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
-    "setuptools = <72.0.0",
     "pydantic",
     "qoqo>=1.9",
     "qoqo_qasm>=0.12.1",
