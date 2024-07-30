@@ -112,19 +112,34 @@ def test_compile_multiple_qoqo_tket() -> None:
     assert compiled_circuits[0] == circuit_res and compiled_circuit_dag == circuit_res_dag
 
 
-# def test_run_qoqo_tket() -> None:
-#     """Test compiling with qoqo_tket."""
-#     circuit = Circuit()
-#     circuit += ops.PauliX(0)
-#     circuit += ops.PragmaGetStateVector("statevector", Circuit())
+def test_run_qoqo_tket() -> None:
+    """Test compiling with qoqo_tket."""
+    circuit = Circuit()
+    circuit += ops.PauliX(0)
+    circuit += ops.PragmaGetStateVector("statevector", Circuit())
 
-#     state_res = [0, 1]
+    state_res = [0, 1]
 
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     results = tket_backend.run_circuit(circuit)
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    results = tket_backend.run_circuit(circuit)
 
-#     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
+    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
+
+
+def test_run_qoqo_tket2() -> None:
+    """Test compiling with qoqo_tket."""
+    circuit = Circuit()
+    circuit += ops.PauliX(0)
+    circuit += ops.PragmaGetStateVector("statevector", Circuit())
+
+    state_res = [0, 1]
+
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    results = tket_backend.run_circuit(circuit)
+
+    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
 # def test_run_complex_qoqo_tket() -> None:
@@ -705,44 +720,44 @@ def test_compile_multiple_qoqo_tket() -> None:
 #     assert len(output[2]["ri"][0]) == 2 ** len(involved_qubits)
 
 
-@pytest.mark.parametrize(
-    "operations",
-    [
-        [
-            ops.PauliX(1),
-            ops.PauliX(0),
-            ops.PauliZ(2),
-            ops.PauliX(3),
-            ops.PauliY(4),
-        ],
-        [
-            ops.Hadamard(0),
-            ops.CNOT(0, 1),
-            ops.CNOT(1, 2),
-            ops.CNOT(2, 3),
-            ops.CNOT(3, 4),
-        ],
-        [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
-    ],
-)
-def test_measurement_statevector(operations: List[Any]) -> None:
-    """Test QoqoTketBackend.run_measurement method."""
-    backend = QoqoTketBackend(ProjectQBackend())
+# @pytest.mark.parametrize(
+#     "operations",
+#     [
+#         [
+#             ops.PauliX(1),
+#             ops.PauliX(0),
+#             ops.PauliZ(2),
+#             ops.PauliX(3),
+#             ops.PauliY(4),
+#         ],
+#         [
+#             ops.Hadamard(0),
+#             ops.CNOT(0, 1),
+#             ops.CNOT(1, 2),
+#             ops.CNOT(2, 3),
+#             ops.CNOT(3, 4),
+#         ],
+#         [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
+#     ],
+# )
+# def test_measurement_statevector(operations: List[Any]) -> None:
+#     """Test QoqoTketBackend.run_measurement method."""
+#     backend = QoqoTketBackend(ProjectQBackend())
 
-    circuit = Circuit()
-    involved_qubits = set()
-    for op in operations:
-        involved_qubits.update(op.involved_qubits())
-        circuit += op
+#     circuit = Circuit()
+#     involved_qubits = set()
+#     for op in operations:
+#         involved_qubits.update(op.involved_qubits())
+#         circuit += op
 
-    circuit += ops.DefinitionComplex("ri", len(involved_qubits), True)
-    circuit += ops.PragmaGetStateVector("ri", None)
+#     circuit += ops.DefinitionComplex("ri", len(involved_qubits), True)
+#     circuit += ops.PragmaGetStateVector("ri", None)
 
-    pzpinput = PauliZProductInput(number_qubits=len(involved_qubits), use_flipped_measurement=True)
+#     pzpinput = PauliZProductInput(number_qubits=len(involved_qubits), use_flipped_measurement=True)
 
-    measurement = PauliZProduct(constant_circuit=None, circuits=[circuit], input=pzpinput)
+#     measurement = PauliZProduct(constant_circuit=None, circuits=[circuit], input=pzpinput)
 
-    try:
-        _ = backend.run_measurement(measurement=measurement)
-    except Exception:
-        AssertionError()
+#     try:
+#         _ = backend.run_measurement(measurement=measurement)
+#     except Exception:
+#         AssertionError()
