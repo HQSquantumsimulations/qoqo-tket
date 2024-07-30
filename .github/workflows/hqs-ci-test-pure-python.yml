@@ -61,7 +61,7 @@ jobs:
       - name: Test without coverage pytest
         run: |
           cd .
-          python -X faulthandler -m pytest -p no:faulthandler -s tests/
+          pytest -p no:faulthandler -s tests/
 
   test_python_macos:
     name: test_python_macos-${{ matrix.python.interpreter }}
