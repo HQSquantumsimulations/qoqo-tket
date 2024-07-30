@@ -255,102 +255,102 @@ def test_quantum_program_cheated() -> None:
     assert_quantum_program_equal(transpiled_program, quantum_program_res)
 
 
-# def test_quantum_program_no_constant_circuit() -> None:
-#     """Test basic program conversion with a BaseGates transpiler."""
-#     circuit_1 = Circuit()
-#     circuit_1 += ops.PauliX(0)
-#     circuit_1 += ops.Identity(0)
+def test_quantum_program_no_constant_circuit() -> None:
+    """Test basic program conversion with a BaseGates transpiler."""
+    circuit_1 = Circuit()
+    circuit_1 += ops.PauliX(0)
+    circuit_1 += ops.Identity(0)
 
-#     circuit_res_1 = Circuit()
-#     circuit_res_1 += ops.RotateX(0, 3.141592653589793)
+    circuit_res_1 = Circuit()
+    circuit_res_1 += ops.RotateX(0, 3.141592653589793)
 
-#     circuit_2 = Circuit()
-#     circuit_2 += ops.Hadamard(0)
-#     circuit_2 += ops.CNOT(0, 1)
-#     circuit_2 += ops.PauliX(1)
-#     circuit_2 += ops.CNOT(1, 2)
-#     circuit_2 += ops.PauliZ(2)
+    circuit_2 = Circuit()
+    circuit_2 += ops.Hadamard(0)
+    circuit_2 += ops.CNOT(0, 1)
+    circuit_2 += ops.PauliX(1)
+    circuit_2 += ops.CNOT(1, 2)
+    circuit_2 += ops.PauliZ(2)
 
-#     circuit_res_2 = Circuit()
-#     circuit_res_2 += ops.RotateZ(0, 10.995574287564276)
-#     circuit_res_2 += ops.RotateX(0, 4.71238898038469)
-#     circuit_res_2 += ops.RotateZ(0, 1.5707963267948966)
-#     circuit_res_2 += ops.RotateZ(1, 9.42477796076938)
-#     circuit_res_2 += ops.RotateX(1, 3.141592653589793)
-#     circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
-#     circuit_res_2 += ops.CNOT(0, 1)
-#     circuit_res_2 += ops.CNOT(1, 2)
+    circuit_res_2 = Circuit()
+    circuit_res_2 += ops.RotateZ(0, 10.995574287564276)
+    circuit_res_2 += ops.RotateX(0, 4.71238898038469)
+    circuit_res_2 += ops.RotateZ(0, 1.5707963267948966)
+    circuit_res_2 += ops.RotateZ(1, 9.42477796076938)
+    circuit_res_2 += ops.RotateX(1, 3.141592653589793)
+    circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
+    circuit_res_2 += ops.CNOT(0, 1)
+    circuit_res_2 += ops.CNOT(1, 2)
 
-#     measurement_input = PauliZProductInput(1, False)
-#     measurement = PauliZProduct(
-#         constant_circuit=None,
-#         circuits=[circuit_1, circuit_2],
-#         input=measurement_input,
-#     )
-#     measurement_res = PauliZProduct(
-#         constant_circuit=None,
-#         circuits=[circuit_res_1, circuit_res_2],
-#         input=measurement_input,
-#     )
-#     quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
-#     quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
+    measurement_input = PauliZProductInput(1, False)
+    measurement = PauliZProduct(
+        constant_circuit=None,
+        circuits=[circuit_1, circuit_2],
+        input=measurement_input,
+    )
+    measurement_res = PauliZProduct(
+        constant_circuit=None,
+        circuits=[circuit_res_1, circuit_res_2],
+        input=measurement_input,
+    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     transpiled_program = tket_backend.compile_program(quantum_program)
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    transpiled_program = tket_backend.compile_program(quantum_program)
 
-#     assert_quantum_program_equal(transpiled_program, quantum_program_res)
+    assert_quantum_program_equal(transpiled_program, quantum_program_res)
 
 
-# def test_quantum_programwith_constant_circuit() -> None:
-#     """Test basic program conversion with a BaseGates transpiler."""
-#     constant_circuit = Circuit()
-#     constant_circuit += ops.Hadamard(0)
-#     constant_circuit += ops.Hadamard(1)
+def test_quantum_program_with_constant_circuit() -> None:
+    """Test basic program conversion with a BaseGates transpiler."""
+    constant_circuit = Circuit()
+    constant_circuit += ops.Hadamard(0)
+    constant_circuit += ops.Hadamard(1)
 
-#     circuit_1 = Circuit()
-#     circuit_1 += ops.PauliX(0)
-#     circuit_1 += ops.Identity(0)
+    circuit_1 = Circuit()
+    circuit_1 += ops.PauliX(0)
+    circuit_1 += ops.Identity(0)
 
-#     circuit_res_1 = Circuit()
-#     circuit_res_1 += ops.RotateZ(0, 10.995574287564276)
-#     circuit_res_1 += ops.RotateX(0, 1.5707963267948966)
-#     circuit_res_1 += ops.RotateZ(0, 1.5707963267948966)
-#     circuit_res_1 += ops.RotateZ(1, 1.5707963267948966)
-#     circuit_res_1 += ops.RotateX(1, 1.5707963267948966)
-#     circuit_res_1 += ops.RotateZ(1, 1.5707963267948966)
+    circuit_res_1 = Circuit()
+    circuit_res_1 += ops.RotateZ(0, 10.995574287564276)
+    circuit_res_1 += ops.RotateX(0, 1.5707963267948966)
+    circuit_res_1 += ops.RotateZ(0, 1.5707963267948966)
+    circuit_res_1 += ops.RotateZ(1, 1.5707963267948966)
+    circuit_res_1 += ops.RotateX(1, 1.5707963267948966)
+    circuit_res_1 += ops.RotateZ(1, 1.5707963267948966)
 
-#     circuit_2 = Circuit()
-#     circuit_2 += ops.Hadamard(0)
-#     circuit_2 += ops.CNOT(0, 1)
-#     circuit_2 += ops.PauliX(1)
-#     circuit_2 += ops.CNOT(1, 2)
-#     circuit_2 += ops.PauliZ(2)
+    circuit_2 = Circuit()
+    circuit_2 += ops.Hadamard(0)
+    circuit_2 += ops.CNOT(0, 1)
+    circuit_2 += ops.PauliX(1)
+    circuit_2 += ops.CNOT(1, 2)
+    circuit_2 += ops.PauliZ(2)
 
-#     circuit_res_2 = Circuit()
-#     circuit_res_2 += ops.RotateZ(0, 3.141592653589793)
-#     circuit_res_2 += ops.RotateZ(1, 1.5707963267948966)
-#     circuit_res_2 += ops.RotateX(1, 4.71238898038469)
-#     circuit_res_2 += ops.RotateZ(1, 1.5707963267948966)
-#     circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
-#     circuit_res_2 += ops.CNOT(0, 1)
-#     circuit_res_2 += ops.CNOT(1, 2)
+    circuit_res_2 = Circuit()
+    circuit_res_2 += ops.RotateZ(0, 3.141592653589793)
+    circuit_res_2 += ops.RotateZ(1, 1.5707963267948966)
+    circuit_res_2 += ops.RotateX(1, 4.71238898038469)
+    circuit_res_2 += ops.RotateZ(1, 1.5707963267948966)
+    circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
+    circuit_res_2 += ops.CNOT(0, 1)
+    circuit_res_2 += ops.CNOT(1, 2)
 
-#     measurement = ClassicalRegister(
-#         constant_circuit=constant_circuit, circuits=[circuit_1, circuit_2]
-#     )
-#     measurement_res = ClassicalRegister(
-#         constant_circuit=None,
-#         circuits=[circuit_res_1, circuit_res_2],
-#     )
-#     quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
-#     quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
+    measurement = ClassicalRegister(
+        constant_circuit=constant_circuit, circuits=[circuit_1, circuit_2]
+    )
+    measurement_res = ClassicalRegister(
+        constant_circuit=None,
+        circuits=[circuit_res_1, circuit_res_2],
+    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     transpiled_program = tket_backend.compile_program(quantum_program)
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    transpiled_program = tket_backend.compile_program(quantum_program)
 
-#     assert_quantum_program_equal(transpiled_program, quantum_program_res)
+    assert_quantum_program_equal(transpiled_program, quantum_program_res)
 
 
 # def test_run_program() -> None:
@@ -450,33 +450,33 @@ def test_quantum_program_cheated() -> None:
 #     assert float(res[0]["<H>"])
 
 
-# @pytest.mark.parametrize(
-#     "operations",
-#     [
-#         [
-#             ops.PauliX(1),
-#             ops.PauliX(0),
-#             ops.PauliZ(2),
-#             ops.PauliX(3),
-#             ops.PauliY(4),
-#         ],
-#         [
-#             ops.Hadamard(0),
-#             ops.CNOT(0, 1),
-#             ops.CNOT(1, 2),
-#             ops.CNOT(2, 3),
-#             ops.CNOT(3, 4),
-#         ],
-#         [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
-#     ],
-# )
-# def test_compile_circuit_errors(operations: List[Any]) -> None:
-#     """Test QoqoTketBackend.run_circuit method errors."""
-#     backend = QoqoTketBackend()
+@pytest.mark.parametrize(
+    "operations",
+    [
+        [
+            ops.PauliX(1),
+            ops.PauliX(0),
+            ops.PauliZ(2),
+            ops.PauliX(3),
+            ops.PauliY(4),
+        ],
+        [
+            ops.Hadamard(0),
+            ops.CNOT(0, 1),
+            ops.CNOT(1, 2),
+            ops.CNOT(2, 3),
+            ops.CNOT(3, 4),
+        ],
+        [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
+    ],
+)
+def test_compile_circuit_errors(operations: List[Any]) -> None:
+    """Test QoqoTketBackend.run_circuit method errors."""
+    backend = QoqoTketBackend()
 
-#     with pytest.raises(TypeError) as exc:
-#         _ = backend.compile_circuit("error")
-#     assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
+    with pytest.raises(TypeError) as exc:
+        _ = backend.compile_circuit("error")
+    assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
 
 
 # @pytest.mark.parametrize(
