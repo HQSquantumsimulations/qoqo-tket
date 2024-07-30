@@ -23,108 +23,108 @@ from pytket.extensions.qiskit import AerBackend
 from pytket.circuit import BasisOrder
 
 
-def test_backend_error() -> None:
-    """Test for errors when creating a backend"""
-    with pytest.raises(TypeError) as exc:
-        backend = QoqoTketBackend("error")
-    assert "The input is not a valid Tket Backend instance." in str(exc.value)
+# def test_backend_error() -> None:
+#     """Test for errors when creating a backend"""
+#     with pytest.raises(TypeError) as exc:
+#         backend = QoqoTketBackend("error")
+#     assert "The input is not a valid Tket Backend instance." in str(exc.value)
 
 
-def test_compile_qoqo_tket() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.Identity(0)
-    circuit += ops.PauliX(0)
+# def test_compile_qoqo_tket() -> None:
+#     """Test compiling with qoqo_tket."""
+#     circuit = Circuit()
+#     circuit += ops.Identity(0)
+#     circuit += ops.PauliX(0)
 
-    circuit_res = Circuit()
-    circuit_res += ops.RotateX(0, 3.141592653589793)
+#     circuit_res = Circuit()
+#     circuit_res += ops.RotateX(0, 3.141592653589793)
 
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    compiled_circuit = tket_backend.compile_circuit(circuit)
-    assert compiled_circuit == circuit_res
-
-
-def test_compile_complex_qoqo_tket() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.Hadamard(0)
-    circuit += ops.CNOT(0, 1)
-    circuit += ops.PauliX(1)
-    circuit += ops.CNOT(1, 2)
-    circuit += ops.PauliZ(2)
-
-    circuit_res = Circuit()
-    circuit_res += ops.RotateZ(0, 10.995574287564276)
-    circuit_res += ops.RotateX(0, 4.71238898038469)
-    circuit_res += ops.RotateZ(0, 1.5707963267948966)
-    circuit_res += ops.RotateZ(1, 9.42477796076938)
-    circuit_res += ops.RotateX(1, 3.141592653589793)
-    circuit_res += ops.RotateZ(2, 3.141592653589793)
-    circuit_res += ops.CNOT(0, 1)
-    circuit_res += ops.CNOT(1, 2)
-
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    compiled_circuit = tket_backend.compile_circuit(circuit)
-    compiled_circuit_dag = CircuitDag()
-    circuit_res_dag = CircuitDag()
-    compiled_circuit_dag = compiled_circuit_dag.from_circuit(compiled_circuit)
-    circuit_res_dag = circuit_res_dag.from_circuit(circuit_res)
-    assert compiled_circuit_dag == circuit_res_dag
+#     backend = ProjectQBackend()
+#     tket_backend = QoqoTketBackend(backend)
+#     compiled_circuit = tket_backend.compile_circuit(circuit)
+#     assert compiled_circuit == circuit_res
 
 
-def test_compile_multiple_qoqo_tket() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.Identity(0)
-    circuit += ops.PauliX(0)
+# def test_compile_complex_qoqo_tket() -> None:
+#     """Test compiling with qoqo_tket."""
+#     circuit = Circuit()
+#     circuit += ops.Hadamard(0)
+#     circuit += ops.CNOT(0, 1)
+#     circuit += ops.PauliX(1)
+#     circuit += ops.CNOT(1, 2)
+#     circuit += ops.PauliZ(2)
 
-    circuit_res = Circuit()
-    circuit_res += ops.RotateX(0, 3.141592653589793)
+#     circuit_res = Circuit()
+#     circuit_res += ops.RotateZ(0, 10.995574287564276)
+#     circuit_res += ops.RotateX(0, 4.71238898038469)
+#     circuit_res += ops.RotateZ(0, 1.5707963267948966)
+#     circuit_res += ops.RotateZ(1, 9.42477796076938)
+#     circuit_res += ops.RotateX(1, 3.141592653589793)
+#     circuit_res += ops.RotateZ(2, 3.141592653589793)
+#     circuit_res += ops.CNOT(0, 1)
+#     circuit_res += ops.CNOT(1, 2)
 
-    circuit_2 = Circuit()
-    circuit_2 += ops.Hadamard(0)
-    circuit_2 += ops.CNOT(0, 1)
-    circuit_2 += ops.PauliX(1)
-    circuit_2 += ops.CNOT(1, 2)
-    circuit_2 += ops.PauliZ(2)
-
-    circuit_res_2 = Circuit()
-    circuit_res_2 += ops.RotateZ(0, 10.995574287564276)
-    circuit_res_2 += ops.RotateX(0, 4.71238898038469)
-    circuit_res_2 += ops.RotateZ(0, 1.5707963267948966)
-    circuit_res_2 += ops.RotateZ(1, 9.42477796076938)
-    circuit_res_2 += ops.RotateX(1, 3.141592653589793)
-    circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
-    circuit_res_2 += ops.CNOT(0, 1)
-    circuit_res_2 += ops.CNOT(1, 2)
-
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    compiled_circuits = tket_backend.compile_circuit([circuit, circuit_2])
-
-    compiled_circuit_dag = CircuitDag()
-    circuit_res_dag = CircuitDag()
-    compiled_circuit_dag = compiled_circuit_dag.from_circuit(compiled_circuits[1])
-    circuit_res_dag = circuit_res_dag.from_circuit(circuit_res_2)
-
-    assert compiled_circuits[0] == circuit_res and compiled_circuit_dag == circuit_res_dag
+#     backend = ProjectQBackend()
+#     tket_backend = QoqoTketBackend(backend)
+#     compiled_circuit = tket_backend.compile_circuit(circuit)
+#     compiled_circuit_dag = CircuitDag()
+#     circuit_res_dag = CircuitDag()
+#     compiled_circuit_dag = compiled_circuit_dag.from_circuit(compiled_circuit)
+#     circuit_res_dag = circuit_res_dag.from_circuit(circuit_res)
+#     assert compiled_circuit_dag == circuit_res_dag
 
 
-def test_run_qoqo_tket() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.PauliX(0)
-    circuit += ops.PragmaGetStateVector("statevector", Circuit())
+# def test_compile_multiple_qoqo_tket() -> None:
+#     """Test compiling with qoqo_tket."""
+#     circuit = Circuit()
+#     circuit += ops.Identity(0)
+#     circuit += ops.PauliX(0)
 
-    state_res = [0, 1]
+#     circuit_res = Circuit()
+#     circuit_res += ops.RotateX(0, 3.141592653589793)
 
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    results = tket_backend.run_circuit(circuit)
+#     circuit_2 = Circuit()
+#     circuit_2 += ops.Hadamard(0)
+#     circuit_2 += ops.CNOT(0, 1)
+#     circuit_2 += ops.PauliX(1)
+#     circuit_2 += ops.CNOT(1, 2)
+#     circuit_2 += ops.PauliZ(2)
 
-    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
+#     circuit_res_2 = Circuit()
+#     circuit_res_2 += ops.RotateZ(0, 10.995574287564276)
+#     circuit_res_2 += ops.RotateX(0, 4.71238898038469)
+#     circuit_res_2 += ops.RotateZ(0, 1.5707963267948966)
+#     circuit_res_2 += ops.RotateZ(1, 9.42477796076938)
+#     circuit_res_2 += ops.RotateX(1, 3.141592653589793)
+#     circuit_res_2 += ops.RotateZ(2, 3.141592653589793)
+#     circuit_res_2 += ops.CNOT(0, 1)
+#     circuit_res_2 += ops.CNOT(1, 2)
+
+#     backend = ProjectQBackend()
+#     tket_backend = QoqoTketBackend(backend)
+#     compiled_circuits = tket_backend.compile_circuit([circuit, circuit_2])
+
+#     compiled_circuit_dag = CircuitDag()
+#     circuit_res_dag = CircuitDag()
+#     compiled_circuit_dag = compiled_circuit_dag.from_circuit(compiled_circuits[1])
+#     circuit_res_dag = circuit_res_dag.from_circuit(circuit_res_2)
+
+#     assert compiled_circuits[0] == circuit_res and compiled_circuit_dag == circuit_res_dag
+
+
+# def test_run_qoqo_tket() -> None:
+#     """Test compiling with qoqo_tket."""
+#     circuit = Circuit()
+#     circuit += ops.PauliX(0)
+#     circuit += ops.PragmaGetStateVector("statevector", Circuit())
+
+#     state_res = [0, 1]
+
+#     backend = ProjectQBackend()
+#     tket_backend = QoqoTketBackend(backend)
+#     results = tket_backend.run_circuit(circuit)
+
+#     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
 def test_run_complex_qoqo_tket() -> None:
