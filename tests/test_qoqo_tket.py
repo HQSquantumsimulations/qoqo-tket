@@ -127,25 +127,6 @@ def test_run_qoqo_tket() -> None:
     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
-def test_run_qoqo_tket2() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.Hadamard(0)
-    circuit += ops.CNOT(0, 1)
-    circuit += ops.PauliX(1)
-    circuit += ops.CNOT(1, 2)
-    circuit += ops.PauliZ(2)
-    circuit += ops.PragmaGetStateVector("statevector", Circuit())
-
-    state_res = [0, 0, 0, -1 / np.sqrt(2), 1 / np.sqrt(2), 0, 0, 0]
-
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    results = tket_backend.run_circuit(circuit)
-
-    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
-
-
 # def test_run_complex_qoqo_tket() -> None:
 #     """Test compiling with qoqo_tket."""
 #     circuit = Circuit()
@@ -190,88 +171,88 @@ def test_run_qoqo_tket2() -> None:
 #     )
 
 
-# def assert_quantum_program_equal(
-#     quantum_program_1: QuantumProgram, quantum_program2: QuantumProgram
-# ) -> None:
-#     """Assert that two quantum programs are equal.
+def assert_quantum_program_equal(
+    quantum_program_1: QuantumProgram, quantum_program2: QuantumProgram
+) -> None:
+    """Assert that two quantum programs are equal.
 
-#     Args:
-#         quantum_program_1 (QuantumProgram): quantum program
-#         quantum_program2 (QuantumProgram): quantum program
+    Args:
+        quantum_program_1 (QuantumProgram): quantum program
+        quantum_program2 (QuantumProgram): quantum program
 
-#     Raises:
-#         AssertionError: if the quantum programs are not equal
-#     """
-#     assert quantum_program_1.input_parameter_names() == quantum_program2.input_parameter_names()
-#     if not isinstance(quantum_program_1.measurement(), ClassicalRegister):
-#         assert quantum_program_1.measurement().input() == quantum_program2.measurement().input()
-#     assert (
-#         quantum_program_1.measurement().constant_circuit()
-#         == quantum_program2.measurement().constant_circuit()
-#     )
-#     for circuit_1, circuit_2 in zip(
-#         quantum_program_1.measurement().circuits(),
-#         quantum_program2.measurement().circuits(),
-#     ):
-#         circuit_dag_1 = CircuitDag()
-#         circuit_dag_2 = CircuitDag()
-#         circuit_dag_1 = circuit_dag_1.from_circuit(circuit_1)
-#         circuit_dag_2 = circuit_dag_2.from_circuit(circuit_2)
-#         assert circuit_dag_1 == circuit_dag_2
-
-
-# def test_quantum_program() -> None:
-#     """Test basic program conversion with a BaseGates transpiler."""
-#     circuit_1 = Circuit()
-#     circuit_1 += ops.PauliX(0)
-#     circuit_1 += ops.Identity(0)
-
-#     circuit_res_1 = Circuit()
-#     circuit_res_1 += ops.RotateX(0, 3.141592653589793)
-
-#     measurement_input = CheatedPauliZProductInput()
-#     measurement = CheatedPauliZProduct(
-#         constant_circuit=None, circuits=[circuit_1], input=measurement_input
-#     )
-#     measurement_res = CheatedPauliZProduct(
-#         constant_circuit=None,
-#         circuits=[circuit_res_1],
-#         input=measurement_input,
-#     )
-#     quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
-#     quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
-
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     transpiled_program = tket_backend.compile_program(quantum_program)
-
-#     assert_quantum_program_equal(transpiled_program, quantum_program_res)
+    Raises:
+        AssertionError: if the quantum programs are not equal
+    """
+    assert quantum_program_1.input_parameter_names() == quantum_program2.input_parameter_names()
+    if not isinstance(quantum_program_1.measurement(), ClassicalRegister):
+        assert quantum_program_1.measurement().input() == quantum_program2.measurement().input()
+    assert (
+        quantum_program_1.measurement().constant_circuit()
+        == quantum_program2.measurement().constant_circuit()
+    )
+    for circuit_1, circuit_2 in zip(
+        quantum_program_1.measurement().circuits(),
+        quantum_program2.measurement().circuits(),
+    ):
+        circuit_dag_1 = CircuitDag()
+        circuit_dag_2 = CircuitDag()
+        circuit_dag_1 = circuit_dag_1.from_circuit(circuit_1)
+        circuit_dag_2 = circuit_dag_2.from_circuit(circuit_2)
+        assert circuit_dag_1 == circuit_dag_2
 
 
-# def test_quantum_program_cheated() -> None:
-#     """Test basic program conversion with a BaseGates transpiler."""
-#     circuit_1 = Circuit()
-#     circuit_1 += ops.PauliX(0)
-#     circuit_1 += ops.Identity(0)
+def test_quantum_program() -> None:
+    """Test basic program conversion with a BaseGates transpiler."""
+    circuit_1 = Circuit()
+    circuit_1 += ops.PauliX(0)
+    circuit_1 += ops.Identity(0)
 
-#     circuit_res_1 = Circuit()
-#     circuit_res_1 += ops.RotateX(0, 3.141592653589793)
+    circuit_res_1 = Circuit()
+    circuit_res_1 += ops.RotateX(0, 3.141592653589793)
 
-#     measurement_input = CheatedInput(1)
-#     measurement = Cheated(constant_circuit=None, circuits=[circuit_1], input=measurement_input)
-#     measurement_res = Cheated(
-#         constant_circuit=None,
-#         circuits=[circuit_res_1],
-#         input=measurement_input,
-#     )
-#     quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
-#     quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
+    measurement_input = CheatedPauliZProductInput()
+    measurement = CheatedPauliZProduct(
+        constant_circuit=None, circuits=[circuit_1], input=measurement_input
+    )
+    measurement_res = CheatedPauliZProduct(
+        constant_circuit=None,
+        circuits=[circuit_res_1],
+        input=measurement_input,
+    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     transpiled_program = tket_backend.compile_program(quantum_program)
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    transpiled_program = tket_backend.compile_program(quantum_program)
 
-#     assert_quantum_program_equal(transpiled_program, quantum_program_res)
+    assert_quantum_program_equal(transpiled_program, quantum_program_res)
+
+
+def test_quantum_program_cheated() -> None:
+    """Test basic program conversion with a BaseGates transpiler."""
+    circuit_1 = Circuit()
+    circuit_1 += ops.PauliX(0)
+    circuit_1 += ops.Identity(0)
+
+    circuit_res_1 = Circuit()
+    circuit_res_1 += ops.RotateX(0, 3.141592653589793)
+
+    measurement_input = CheatedInput(1)
+    measurement = Cheated(constant_circuit=None, circuits=[circuit_1], input=measurement_input)
+    measurement_res = Cheated(
+        constant_circuit=None,
+        circuits=[circuit_res_1],
+        input=measurement_input,
+    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
+
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    transpiled_program = tket_backend.compile_program(quantum_program)
+
+    assert_quantum_program_equal(transpiled_program, quantum_program_res)
 
 
 # def test_quantum_program_no_constant_circuit() -> None:
