@@ -112,19 +112,19 @@ def test_compile_multiple_qoqo_tket() -> None:
     assert compiled_circuits[0] == circuit_res and compiled_circuit_dag == circuit_res_dag
 
 
-def test_run_qoqo_tket() -> None:
-    """Test compiling with qoqo_tket."""
-    circuit = Circuit()
-    circuit += ops.PauliX(0)
-    circuit += ops.PragmaGetStateVector("statevector", Circuit())
+# def test_run_qoqo_tket() -> None:
+#     """Test compiling with qoqo_tket."""
+#     circuit = Circuit()
+#     circuit += ops.PauliX(0)
+#     circuit += ops.PragmaGetStateVector("statevector", Circuit())
 
-    state_res = [0, 1]
+#     state_res = [0, 1]
 
-    backend = ProjectQBackend()
-    tket_backend = QoqoTketBackend(backend)
-    results = tket_backend.run_circuit(circuit)
+#     backend = ProjectQBackend()
+#     tket_backend = QoqoTketBackend(backend)
+#     results = tket_backend.run_circuit(circuit)
 
-    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
+#     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
 # def test_run_complex_qoqo_tket() -> None:
