@@ -508,66 +508,66 @@ def test_run_circuit_errors(operations: List[Any]) -> None:
     assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
 
 
-# @pytest.mark.parametrize(
-#     "operations",
-#     [
-#         [
-#             ops.PauliX(1),
-#             ops.PauliX(0),
-#             ops.PauliZ(2),
-#             ops.PauliX(3),
-#             ops.PauliY(4),
-#         ],
-#         [
-#             ops.Hadamard(0),
-#             ops.CNOT(0, 1),
-#             ops.CNOT(1, 2),
-#             ops.CNOT(2, 3),
-#             ops.CNOT(3, 4),
-#         ],
-#         [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
-#     ],
-# )
-# def test_run_circuit_results(operations: List[Any]) -> None:
-#     """Test QoqoTketBackend.run_circuit method results."""
-#     backend = QoqoTketBackend()
-#     backend_state = QoqoTketBackend(ProjectQBackend())
+@pytest.mark.parametrize(
+    "operations",
+    [
+        [
+            ops.PauliX(1),
+            ops.PauliX(0),
+            ops.PauliZ(2),
+            ops.PauliX(3),
+            ops.PauliY(4),
+        ],
+        [
+            ops.Hadamard(0),
+            ops.CNOT(0, 1),
+            ops.CNOT(1, 2),
+            ops.CNOT(2, 3),
+            ops.CNOT(3, 4),
+        ],
+        [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
+    ],
+)
+def test_run_circuit_results(operations: List[Any]) -> None:
+    """Test QoqoTketBackend.run_circuit method results."""
+    backend = QoqoTketBackend()
+    backend_state = QoqoTketBackend(ProjectQBackend())
 
-#     circuit = Circuit()
-#     involved_qubits = set()
-#     for op in operations:
-#         involved_qubits.update(op.involved_qubits())
-#         circuit += op
+    circuit = Circuit()
+    involved_qubits = set()
+    for op in operations:
+        involved_qubits.update(op.involved_qubits())
+        circuit += op
 
-#     circuit_1 = Circuit()
-#     circuit_1 += circuit
-#     circuit_1 += ops.DefinitionBit("ri", len(involved_qubits), True)
-#     circuit_1 += ops.PragmaRepeatedMeasurement("ri", 10)
+    circuit_1 = Circuit()
+    circuit_1 += circuit
+    circuit_1 += ops.DefinitionBit("ri", len(involved_qubits), True)
+    circuit_1 += ops.PragmaRepeatedMeasurement("ri", 10)
 
-#     result = backend.run_circuit(circuit_1)
+    result = backend.run_circuit(circuit_1)
 
-#     assert result[0]
-#     assert result[0]["ri"]
-#     assert not result[1]
-#     assert not result[2]
+    assert result[0]
+    assert result[0]["ri"]
+    assert not result[1]
+    assert not result[2]
 
-#     circuit_2 = Circuit()
-#     circuit_2 += circuit
-#     circuit_2 += ops.DefinitionComplex("ri", len(involved_qubits), True)
-#     circuit_2 += ops.PragmaGetStateVector("ri", None)
+    circuit_2 = Circuit()
+    circuit_2 += circuit
+    circuit_2 += ops.DefinitionComplex("ri", len(involved_qubits), True)
+    circuit_2 += ops.PragmaGetStateVector("ri", None)
 
-#     result = backend_state.run_circuit(circuit_2)
+    result = backend_state.run_circuit(circuit_2)
 
-#     assert not result[0]
-#     assert not result[1]
-#     assert result[2]
-#     assert result[2]["ri"]
-#     assert len(result[2]["ri"][0]) == 2 ** len(involved_qubits)
+    assert not result[0]
+    assert not result[1]
+    assert result[2]
+    assert result[2]["ri"]
+    assert len(result[2]["ri"][0]) == 2 ** len(involved_qubits)
 
-#     circuit_3 = Circuit()
-#     circuit_3 += circuit
-#     circuit_3 += ops.DefinitionComplex("ri", len(involved_qubits), True)
-#     circuit_3 += ops.PragmaGetDensityMatrix("ri", None)
+    circuit_3 = Circuit()
+    circuit_3 += circuit
+    circuit_3 += ops.DefinitionComplex("ri", len(involved_qubits), True)
+    circuit_3 += ops.PragmaGetDensityMatrix("ri", None)
 
 
 # @pytest.mark.parametrize(
