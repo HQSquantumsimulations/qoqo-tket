@@ -127,21 +127,21 @@ def test_run_qoqo_tket() -> None:
     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
-# def test_run_complex_qoqo_tket() -> None:
-#     """Test compiling with qoqo_tket."""
-#     circuit = Circuit()
-#     circuit += ops.Hadamard(0)
-#     circuit += ops.CNOT(0, 1)
-#     circuit += ops.PauliX(1)
-#     circuit += ops.CNOT(1, 2)
-#     circuit += ops.PauliZ(2)
-#     circuit += ops.PragmaGetStateVector("statevector", Circuit())
-#     state_res = [0, 0, 0, -1 / np.sqrt(2), 1 / np.sqrt(2), 0, 0, 0]
+def test_run_complex_qoqo_tket() -> None:
+    """Test compiling with qoqo_tket."""
+    circuit = Circuit()
+    circuit += ops.Hadamard(0)
+    circuit += ops.CNOT(0, 1)
+    circuit += ops.PauliX(1)
+    circuit += ops.CNOT(1, 2)
+    circuit += ops.PauliZ(2)
+    circuit += ops.PragmaGetStateVector("statevector", Circuit())
+    state_res = [0, 0, 0, -1 / np.sqrt(2), 1 / np.sqrt(2), 0, 0, 0]
 
-#     backend = ProjectQBackend()
-#     tket_backend = QoqoTketBackend(backend)
-#     results = tket_backend.run_circuit(circuit)
-#     assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
+    backend = ProjectQBackend()
+    tket_backend = QoqoTketBackend(backend)
+    results = tket_backend.run_circuit(circuit)
+    assert np.isclose(results[2]["statevector"][0], state_res, atol=1e-5).all()
 
 
 # def test_run_multiple_qoqo_tket() -> None:
