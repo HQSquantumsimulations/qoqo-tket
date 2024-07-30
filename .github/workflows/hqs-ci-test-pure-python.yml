@@ -30,9 +30,6 @@ jobs:
           python-version: ${{ matrix.python.py }}
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install setuptools
-          pip install --upgrade setuptools
           pip install ./[tests]
       - name: Test without coverage pytest
         run: |
@@ -58,7 +55,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ./[tests]
-          python -m pip install pytest==6.2.5
+          python -m pip install pytest==4.6.11
       - name: Test without coverage pytest
         run: |
           cd .
