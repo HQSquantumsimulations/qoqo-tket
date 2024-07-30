@@ -131,6 +131,11 @@ def test_run_qoqo_tket2() -> None:
     """Test compiling with qoqo_tket."""
     circuit = Circuit()
     circuit += ops.PauliX(0)
+    circuit += ops.Hadamard(0)
+    circuit += ops.CNOT(0, 1)
+    circuit += ops.PauliX(1)
+    circuit += ops.CNOT(1, 2)
+    circuit += ops.PauliZ(2)
     circuit += ops.PragmaGetStateVector("statevector", Circuit())
 
     state_res = [0, 1]
