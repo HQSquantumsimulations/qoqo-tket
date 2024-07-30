@@ -33,11 +33,11 @@ class QoqoTketBackend:
             TypeError: the input is not a valid Tket Backend instance.
         """
         if tket_backend is None:
-            self.tket_backend = AerBackend()
-        elif not isinstance(tket_backend, Backend) and not isinstance(tket_backend, AerBackend):
-            raise TypeError("The input is not a valid Tket Backend instance.")
-        else:
+            self.tket_backend: Union[AerBackend, Backend] = AerBackend()
+        elif isinstance(tket_backend, Backend) or isinstance(tket_backend, AerBackend):
             self.tket_backend = tket_backend
+        else:
+            raise TypeError("The input is not a valid Tket Backend instance.")
 
     def compile_circuit(self, circuits: Union[Circuit, List[Circuit]]) -> Circuit:
         """Use a tket backend to compile qoqo circuit(s).
