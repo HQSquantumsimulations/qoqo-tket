@@ -479,33 +479,33 @@ def test_compile_circuit_errors(operations: List[Any]) -> None:
     assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
 
 
-# @pytest.mark.parametrize(
-#     "operations",
-#     [
-#         [
-#             ops.PauliX(1),
-#             ops.PauliX(0),
-#             ops.PauliZ(2),
-#             ops.PauliX(3),
-#             ops.PauliY(4),
-#         ],
-#         [
-#             ops.Hadamard(0),
-#             ops.CNOT(0, 1),
-#             ops.CNOT(1, 2),
-#             ops.CNOT(2, 3),
-#             ops.CNOT(3, 4),
-#         ],
-#         [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
-#     ],
-# )
-# def test_run_circuit_errors(operations: List[Any]) -> None:
-#     """Test QoqoTketBackend.run_circuit method errors."""
-#     backend = QoqoTketBackend()
+@pytest.mark.parametrize(
+    "operations",
+    [
+        [
+            ops.PauliX(1),
+            ops.PauliX(0),
+            ops.PauliZ(2),
+            ops.PauliX(3),
+            ops.PauliY(4),
+        ],
+        [
+            ops.Hadamard(0),
+            ops.CNOT(0, 1),
+            ops.CNOT(1, 2),
+            ops.CNOT(2, 3),
+            ops.CNOT(3, 4),
+        ],
+        [ops.RotateX(0, 0.23), ops.RotateY(1, 0.12), ops.RotateZ(2, 0.34)],
+    ],
+)
+def test_run_circuit_errors(operations: List[Any]) -> None:
+    """Test QoqoTketBackend.run_circuit method errors."""
+    backend = QoqoTketBackend()
 
-#     with pytest.raises(TypeError) as exc:
-#         _ = backend.run_circuit("error")
-#     assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
+    with pytest.raises(TypeError) as exc:
+        _ = backend.run_circuit("error")
+    assert "The input is not a valid Qoqo Circuit instance." in str(exc.value)
 
 
 # @pytest.mark.parametrize(
