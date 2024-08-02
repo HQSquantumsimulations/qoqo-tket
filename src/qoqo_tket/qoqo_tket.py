@@ -7,7 +7,6 @@ from qoqo import Circuit, QuantumProgram
 from qoqo_qasm import QasmBackend, qasm_str_to_circuit  # type: ignore
 from pytket.qasm import circuit_from_qasm_str, circuit_to_qasm_str  # type: ignore
 from pytket.backends import Backend  # type: ignore
-from pytket.backends.backendresult import BackendResult  # type: ignore
 from pytket.extensions.qiskit import AerBackend  # type: ignore
 from typing import Any, Dict, List, Optional, Tuple, Union
 from qoqo.measurements import (  # type:ignore
@@ -19,10 +18,11 @@ from qoqo.measurements import (  # type:ignore
 
 
 class QoqoTketBackend:
+    """Run a Qoqo QuantumProgram or circuit  on a Tket backend."""
 
     def __init__(
         self,
-        tket_backend: Backend = None,
+        tket_backend: Optional[Union[Backend, AerBackend]] = None,
     ) -> None:
         """Init for Tket backend settings.
 
@@ -33,15 +33,13 @@ class QoqoTketBackend:
             TypeError: the input is not a valid Tket Backend instance.
         """
         if tket_backend is None:
-            self.tket_backend = AerBackend()
-        elif not isinstance(tket_backend, Backend):
-            raise TypeError("The input is not a valid Tket Backend instance.")
-        else:
+            self.tket_backend: Union[AerBackend, Backend] = AerBackend()
+        elif isinstance(tket_backend, Backend) or isinstance(tket_backend, AerBackend):
             self.tket_backend = tket_backend
+        else:
+            raise TypeError("The input is not a valid Tket Backend instance.")
 
-    def compile_circuit(
-        self, circuits: Union[Circuit, List[Circuit]]
-    ) -> Circuit:
+    def compile_circuit(self, circuits: Union[Circuit, List[Circuit]]) -> Circuit:
         """Use a tket backend to compile qoqo circuit(s).
 
         Args:
@@ -52,8 +50,8 @@ class QoqoTketBackend:
         """
         circuits_is_list = isinstance(circuits, list)
 
-        # if not isinstance(circuits, Circuit) and not circuits_is_list:
-        #     raise TypeError("The input is not a valid Qoqo Circuit instance.")
+        if not isinstance(circuits, Circuit) and not circuits_is_list:
+            raise TypeError("The input is not a valid Qoqo Circuit instance.")
 
         circuits = circuits if circuits_is_list else [circuits]
 
@@ -63,23 +61,15 @@ class QoqoTketBackend:
             circuit_from_qasm_str(qasm_backend.circuit_to_qasm_str(circuit))
             for circuit in circuits
         ]
-        compiled_tket_circuits = self.tket_backend.get_compiled_circuits(
-            tket_circuits
-        )
+        compiled_tket_circuits = self.tket_backend.get_compiled_circuits(tket_circuits)
 
         tket_qasm = [
             circuit_to_qasm_str(compiled_tket_circuit).replace("( ", " ")
             for compiled_tket_circuit in compiled_tket_circuits
         ]
 
-        transpiled_qoqo_circuits = [
-            qasm_str_to_circuit(qasm_str) for qasm_str in tket_qasm
-        ]
-        return (
-            transpiled_qoqo_circuits
-            if circuits_is_list
-            else transpiled_qoqo_circuits[0]
-        )
+        transpiled_qoqo_circuits = [qasm_str_to_circuit(qasm_str) for qasm_str in tket_qasm]
+        return transpiled_qoqo_circuits if circuits_is_list else transpiled_qoqo_circuits[0]
 
     def run_circuit(
         self,
@@ -101,12 +91,12 @@ class QoqoTketBackend:
     ]:
         """Use a tket backend to run qoqo circuit(s).
 
-                Args:
-                    circuits (Union[Circuit, list[Circuit]]): qoqo circuit(s)
-                    n_shots (Union[int, list[int], None]): number of shots for each circuit
+        Args:
+            circuits (Union[Circuit, list[Circuit]]): qoqo circuit(s)
+            n_shots (Union[int, list[int], None]): number of shots for each circuit
 
-                Returns:
-                    Union[
+        Returns:
+            Union[
             Tuple[
                 Dict[str, List[List[bool]]],
                 Dict[str, List[List[float]]],
@@ -134,32 +124,23 @@ class QoqoTketBackend:
             circuit_from_qasm_str(qasm_backend.circuit_to_qasm_str(circuit))
             for circuit in circuits
         ]
-        compiled_tket_circuits = self.tket_backend.get_compiled_circuits(
-            tket_circuits
-        )
-        tket_results = self.tket_backend.run_circuits(
-            compiled_tket_circuits, n_shots
-        )
+        compiled_tket_circuits = self.tket_backend.get_compiled_circuits(tket_circuits)
+        tket_results = self.tket_backend.run_circuits(compiled_tket_circuits, n_shots)
 
         output = []
         for result, qoqo_circuit in zip(tket_results, circuits):
-            output_bit_register = {}
-            output_float_register = {}
-            output_complex_register = {}
+            output_bit_register: Dict[str, List[List[bool]]] = {}
+            output_float_register: Dict[str, list[List[float]]] = {}
+            output_complex_register: Dict[str, List[List[complex]]] = {}
             if result.contains_measured_results:
                 name = result.get_bitlist()[0].reg_name
                 output_bit_register = {
-                    name: [
-                        [bool(bit) for bit in shot]
-                        for shot in result.get_shots()
-                    ]
+                    name: [[bool(bit) for bit in shot] for shot in result.get_shots()]
                 }
             if result.contains_state_results:
                 for op in qoqo_circuit:
                     if "PragmaGetStateVector" in op.tags():
-                        output_complex_register = {
-                            op.readout(): [list(result.get_state())]
-                        }
+                        output_complex_register = {op.readout(): [list(result.get_state())]}
                         break
                     elif "PragmaGetDensityMatrix" in op.tags():
                         output_complex_register = {
@@ -175,9 +156,7 @@ class QoqoTketBackend:
             )
         return output if circuits_is_list else output[0]
 
-    def compile_program(
-        self, quantum_program: QuantumProgram
-    ) -> QuantumProgram:
+    def compile_program(self, quantum_program: QuantumProgram) -> QuantumProgram:
         """Use tket backend to compile a QuantumProgram.
 
         Args:
@@ -197,9 +176,7 @@ class QoqoTketBackend:
 
         def recreate_measurement(
             quantum_program: QuantumProgram, transpiled_circuits: List[Circuit]
-        ) -> Union[
-            PauliZProduct, ClassicalRegister, CheatedPauliZProduct, Cheated
-        ]:
+        ) -> Union[PauliZProduct, ClassicalRegister, CheatedPauliZProduct, Cheated]:
             """Recreate a measurement QuantumProgram using the transpiled circuits.
 
             Args:
@@ -219,9 +196,7 @@ class QoqoTketBackend:
                     circuits=transpiled_circuits,
                     input=quantum_program.measurement().input(),
                 )
-            elif isinstance(
-                quantum_program.measurement(), CheatedPauliZProduct
-            ):
+            elif isinstance(quantum_program.measurement(), CheatedPauliZProduct):
                 return CheatedPauliZProduct(
                     constant_circuit=None,
                     circuits=transpiled_circuits,
@@ -234,16 +209,12 @@ class QoqoTketBackend:
                     input=quantum_program.measurement().input(),
                 )
             elif isinstance(quantum_program.measurement(), ClassicalRegister):
-                return ClassicalRegister(
-                    constant_circuit=None, circuits=transpiled_circuits
-                )
+                return ClassicalRegister(constant_circuit=None, circuits=transpiled_circuits)
             else:
                 raise TypeError("Unknown measurement type")
 
         return QuantumProgram(
-            measurement=recreate_measurement(
-                quantum_program, transpiled_circuits
-            ),
+            measurement=recreate_measurement(quantum_program, transpiled_circuits),
             input_parameter_names=quantum_program.input_parameter_names(),
         )
 
@@ -276,11 +247,14 @@ class QoqoTketBackend:
             else:
                 run_circuit = constant_circuit + circuit
 
+            results = self.run_circuit(run_circuit)
             (
                 tmp_bit_register_dict,
                 tmp_float_register_dict,
                 tmp_complex_register_dict,
-            ) = self.run_circuit(run_circuit)
+            ) = (
+                results if not isinstance(results, list) else results[0]
+            )
 
             for key, value_bools in tmp_bit_register_dict.items():
                 if key in output_bit_register_dict:
@@ -328,9 +302,7 @@ class QoqoTketBackend:
             output_complex_register_dict,
         )
 
-    def run_program(
-        self, program: QuantumProgram, params_values: List[List[float]]
-    ) -> Optional[
+    def run_program(self, program: QuantumProgram, params_values: List[List[float]]) -> Optional[
         List[
             Union[
                 Tuple[

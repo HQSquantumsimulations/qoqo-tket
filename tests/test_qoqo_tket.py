@@ -106,15 +106,10 @@ def test_compile_multiple_qoqo_tket() -> None:
 
     compiled_circuit_dag = CircuitDag()
     circuit_res_dag = CircuitDag()
-    compiled_circuit_dag = compiled_circuit_dag.from_circuit(
-        compiled_circuits[1]
-    )
+    compiled_circuit_dag = compiled_circuit_dag.from_circuit(compiled_circuits[1])
     circuit_res_dag = circuit_res_dag.from_circuit(circuit_res_2)
 
-    assert (
-        compiled_circuits[0] == circuit_res
-        and compiled_circuit_dag == circuit_res_dag
-    )
+    assert compiled_circuits[0] == circuit_res and compiled_circuit_dag == circuit_res_dag
 
 
 def test_run_qoqo_tket() -> None:
@@ -188,15 +183,9 @@ def assert_quantum_program_equal(
     Raises:
         AssertionError: if the quantum programs are not equal
     """
-    assert (
-        quantum_program_1.input_parameter_names()
-        == quantum_program2.input_parameter_names()
-    )
+    assert quantum_program_1.input_parameter_names() == quantum_program2.input_parameter_names()
     if not isinstance(quantum_program_1.measurement(), ClassicalRegister):
-        assert (
-            quantum_program_1.measurement().input()
-            == quantum_program2.measurement().input()
-        )
+        assert quantum_program_1.measurement().input() == quantum_program2.measurement().input()
     assert (
         quantum_program_1.measurement().constant_circuit()
         == quantum_program2.measurement().constant_circuit()
@@ -230,12 +219,8 @@ def test_quantum_program() -> None:
         circuits=[circuit_res_1],
         input=measurement_input,
     )
-    quantum_program = QuantumProgram(
-        measurement=measurement, input_parameter_names=["x"]
-    )
-    quantum_program_res = QuantumProgram(
-        measurement=measurement_res, input_parameter_names=["x"]
-    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
     backend = ProjectQBackend()
     tket_backend = QoqoTketBackend(backend)
@@ -254,20 +239,14 @@ def test_quantum_program_cheated() -> None:
     circuit_res_1 += ops.RotateX(0, 3.141592653589793)
 
     measurement_input = CheatedInput(1)
-    measurement = Cheated(
-        constant_circuit=None, circuits=[circuit_1], input=measurement_input
-    )
+    measurement = Cheated(constant_circuit=None, circuits=[circuit_1], input=measurement_input)
     measurement_res = Cheated(
         constant_circuit=None,
         circuits=[circuit_res_1],
         input=measurement_input,
     )
-    quantum_program = QuantumProgram(
-        measurement=measurement, input_parameter_names=["x"]
-    )
-    quantum_program_res = QuantumProgram(
-        measurement=measurement_res, input_parameter_names=["x"]
-    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
     backend = ProjectQBackend()
     tket_backend = QoqoTketBackend(backend)
@@ -313,12 +292,8 @@ def test_quantum_program_no_constant_circuit() -> None:
         circuits=[circuit_res_1, circuit_res_2],
         input=measurement_input,
     )
-    quantum_program = QuantumProgram(
-        measurement=measurement, input_parameter_names=["x"]
-    )
-    quantum_program_res = QuantumProgram(
-        measurement=measurement_res, input_parameter_names=["x"]
-    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
     backend = ProjectQBackend()
     tket_backend = QoqoTketBackend(backend)
@@ -327,7 +302,7 @@ def test_quantum_program_no_constant_circuit() -> None:
     assert_quantum_program_equal(transpiled_program, quantum_program_res)
 
 
-def test_quantum_programwith_constant_circuit() -> None:
+def test_quantum_program_with_constant_circuit() -> None:
     """Test basic program conversion with a BaseGates transpiler."""
     constant_circuit = Circuit()
     constant_circuit += ops.Hadamard(0)
@@ -368,12 +343,8 @@ def test_quantum_programwith_constant_circuit() -> None:
         constant_circuit=None,
         circuits=[circuit_res_1, circuit_res_2],
     )
-    quantum_program = QuantumProgram(
-        measurement=measurement, input_parameter_names=["x"]
-    )
-    quantum_program_res = QuantumProgram(
-        measurement=measurement_res, input_parameter_names=["x"]
-    )
+    quantum_program = QuantumProgram(measurement=measurement, input_parameter_names=["x"])
+    quantum_program_res = QuantumProgram(measurement=measurement_res, input_parameter_names=["x"])
 
     backend = ProjectQBackend()
     tket_backend = QoqoTketBackend(backend)
@@ -440,13 +411,9 @@ def test_run_program() -> None:
     init_circuit += ops.DefinitionBit("ro", 1, True)
     init_circuit += ops.PragmaRepeatedMeasurement("ro", 1000, None)
 
-    measurement = ClassicalRegister(
-        constant_circuit=None, circuits=[init_circuit, init_circuit]
-    )
+    measurement = ClassicalRegister(constant_circuit=None, circuits=[init_circuit, init_circuit])
 
-    program = QuantumProgram(
-        measurement=measurement, input_parameter_names=["angle_0", "angle_1"]
-    )
+    program = QuantumProgram(measurement=measurement, input_parameter_names=["angle_0", "angle_1"])
 
     res = backend.run_program(
         program=program,
@@ -682,13 +649,9 @@ def test_measurement(operations: List[Any]) -> None:
     circuit += ops.DefinitionBit("ri", len(involved_qubits), True)
     circuit += ops.PragmaRepeatedMeasurement("ri", 10)
 
-    pzpinput = PauliZProductInput(
-        number_qubits=len(involved_qubits), use_flipped_measurement=True
-    )
+    pzpinput = PauliZProductInput(number_qubits=len(involved_qubits), use_flipped_measurement=True)
 
-    measurement = PauliZProduct(
-        constant_circuit=None, circuits=[circuit], input=pzpinput
-    )
+    measurement = PauliZProduct(constant_circuit=None, circuits=[circuit], input=pzpinput)
 
     try:
         _ = backend.run_measurement(measurement=measurement)
@@ -775,13 +738,9 @@ def test_measurement_statevector(operations: List[Any]) -> None:
     circuit += ops.DefinitionComplex("ri", len(involved_qubits), True)
     circuit += ops.PragmaGetStateVector("ri", None)
 
-    pzpinput = PauliZProductInput(
-        number_qubits=len(involved_qubits), use_flipped_measurement=True
-    )
+    pzpinput = PauliZProductInput(number_qubits=len(involved_qubits), use_flipped_measurement=True)
 
-    measurement = PauliZProduct(
-        constant_circuit=None, circuits=[circuit], input=pzpinput
-    )
+    measurement = PauliZProduct(constant_circuit=None, circuits=[circuit], input=pzpinput)
 
     try:
         _ = backend.run_measurement(measurement=measurement)
