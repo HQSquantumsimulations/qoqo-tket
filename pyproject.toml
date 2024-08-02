@@ -13,7 +13,7 @@ dependencies = [
     "pydantic",
     "qoqo>=1.9",
     "qoqo_qasm>=0.12.1",
-    "pytket >= 1.28",
+    "pytket >= 1.28, <= 1.29",
     "pytket-qiskit",
     "qiskit >= 1.1",
     "qiskit-algorithms >= 0.3.0",
