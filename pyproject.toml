@@ -58,7 +58,6 @@ version_scheme = "python-simplified-semver"
 # of the repositorie's root folder, e.g., as done in several QC stack repositories.
 # root = "../"  # default behavior is root = "./"
 
-
 [tool.mypy]
 ignore_missing_imports = true
 pretty = true
