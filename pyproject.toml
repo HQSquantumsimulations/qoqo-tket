@@ -13,7 +13,7 @@ dependencies = [
     "pydantic",
     "qoqo>=1.9",
     "qoqo_qasm>=0.12.1",
-    "pytket >= 1.28",
+    "pytket >= 1.31, < 1.32",
     "pytket-qiskit",
     "qiskit >= 1.1",
     "qiskit-algorithms >= 0.3.0",
@@ -35,11 +35,11 @@ dev = [
 ]
 
 [build-system]
-requires = ["setuptools"]               #, "setuptools-scm"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
-# [tool.setuptools_scm]
-# version_scheme = "python-simplified-semver"
+[tool.setuptools_scm]
+version_scheme = "python-simplified-semver"
 # write_to = "src/qoqo_tket/__version__.py"
 # NOTE: If you need to access the version of a package when using dynamic versioning, please uncomment the `version_file` line.
 # This could be useful for instance when running sphinx, which can then access the version with the following snippet:
@@ -56,11 +56,6 @@ build-backend = "setuptools.build_meta"
 # NOTE: the example below **assumes** that the pyproject.toml is in a direct sub-folder
 # of the repositorie's root folder, e.g., as done in several QC stack repositories.
 # root = "../"  # default behavior is root = "./"
-
-[project.scripts]
-get_answer = "hqs_python_template:get_answer"
-# NOTE: the above section is meant as an example on how to automatically setup scripts which can be directly executed
-# after installing the package. REMOVE (or adjust to your needs) IN YOUR REPOSITORY
 
 [tool.mypy]
 ignore_missing_imports = true
