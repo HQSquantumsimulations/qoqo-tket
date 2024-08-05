@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qoqo_tket &mdash; qoqo-tket 0.1.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=360bc84d"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="API documentation for qoqo-tket" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            qoqo-tket
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">qoqo_tket</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.__init__"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.compile_circuit"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.compile_circuit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.run_circuit"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.run_circuit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.compile_program"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.compile_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.run_measurement_registers"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.run_measurement_registers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.run_measurement"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.run_measurement()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qoqo_tket.QoqoTketBackend.run_program"><code class="docutils literal notranslate"><span class="pre">QoqoTketBackend.run_program()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">qoqo-tket</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">qoqo_tket</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/qoqo_tket.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-qoqo_tket">
+<span id="qoqo-tket"></span><h1>qoqo_tket<a class="headerlink" href="#module-qoqo_tket" title="Link to this heading"></a></h1>
+<p>A docstring describing the module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qoqo_tket.</span></span><span class="sig-name descname"><span class="pre">QoqoTketBackend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tket_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">AerBackend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend" title="Link to this definition"></a></dt>
+<dd><p>Run a Qoqo QuantumProgram or circuit  on a Tket backend.</p>
+<p>Init for Tket backend settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tket_backend</strong> (<em>Backend</em>) – Tket backend instance to use for the simulation.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – the input is not a valid Tket Backend instance.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tket_backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">AerBackend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.__init__" title="Link to this definition"></a></dt>
+<dd><p>Init for Tket backend settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tket_backend</strong> (<em>Backend</em>) – Tket backend instance to use for the simulation.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – the input is not a valid Tket Backend instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.compile_circuit">
+<span class="sig-name descname"><span class="pre">compile_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Circuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Circuit</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Circuit</span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.compile_circuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.compile_circuit" title="Link to this definition"></a></dt>
+<dd><p>Use a tket backend to compile qoqo circuit(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>circuits</strong> (<em>Union</em><em>[</em><em>Circuit</em><em>, </em><em>List</em><em>[</em><em>Circuit</em><em>]</em><em>]</em>) – qoqo circuit(s)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>compiled qoqo circuit</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Circuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.run_circuit">
+<span class="sig-name descname"><span class="pre">run_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Circuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Circuit</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.run_circuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.run_circuit" title="Link to this definition"></a></dt>
+<dd><p>Use a tket backend to run qoqo circuit(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuits</strong> (<em>Union</em><em>[</em><em>Circuit</em><em>, </em><em>list</em><em>[</em><em>Circuit</em><em>]</em><em>]</em>) – qoqo circuit(s)</p></li>
+<li><p><strong>n_shots</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>None</em><em>]</em>) – number of shots for each circuit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Union[
+Tuple[</p>
+<blockquote>
+<div><p>Dict[str, List[List[bool]]],
+Dict[str, List[List[float]]],
+Dict[str, List[List[complex]]],</p>
+</div></blockquote>
+<p>],
+List[</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Tuple[</dt><dd><p>Dict[str, List[List[bool]]],
+Dict[str, List[List[float]]],
+Dict[str, List[List[complex]]],</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>],</p>
+</p>
+</dd>
+</dl>
+<p>]]: Result for each circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.compile_program">
+<span class="sig-name descname"><span class="pre">compile_program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_program</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumProgram</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumProgram</span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.compile_program"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.compile_program" title="Link to this definition"></a></dt>
+<dd><p>Use tket backend to compile a QuantumProgram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>quantum_program</strong> (<em>QuantumProgram</em>) – QuantumProgram to transpile.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transpiled QuantumProgram.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QuantumProgram</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.run_measurement_registers">
+<span class="sig-name descname"><span class="pre">run_measurement_registers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.run_measurement_registers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.run_measurement_registers" title="Link to this definition"></a></dt>
+<dd><p>Run all circuits of a measurement with the Tket backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>measurement</strong> – The measurement that is run.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple[Dict[str, List[List[bool]]],                  Dict[str, List[List[float]]],                  Dict[str, List[List[complex]]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.run_measurement">
+<span class="sig-name descname"><span class="pre">run_measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.run_measurement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.run_measurement" title="Link to this definition"></a></dt>
+<dd><p>Run a circuit with the Tket backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>measurement</strong> – The measurement that is run.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[Dict[str, float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qoqo_tket.QoqoTketBackend.run_program">
+<span class="sig-name descname"><span class="pre">run_program</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumProgram</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/qoqo_tket/qoqo_tket.html#QoqoTketBackend.run_program"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qoqo_tket.QoqoTketBackend.run_program" title="Link to this definition"></a></dt>
+<dd><p>Run a qoqo quantum program on a tket backend multiple times.</p>
+<p>It can handle QuantumProgram instances containing any kind of measurement. The list of
+lists of parameters will be used to call <cite>program.run(self, params)</cite> or
+<cite>program.run_registers(self, params)</cite> as many times as the number of sublists.
+The return type will change accordingly.</p>
+<p>If no parameters values are provided, a normal call <cite>program.run(self, [])</cite> call
+will be executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>program</strong> (<em>QuantumProgram</em>) – the qoqo quantum program to run.</p></li>
+<li><p><strong>params_values</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – the parameters values to pass to the quantum
+program.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl>
+<dt>Optional[</dt><dd><dl>
+<dt>List[</dt><dd><dl>
+<dt>Union[</dt><dd><dl class="simple">
+<dt>Tuple[</dt><dd><p>Dict[str, List[List[bool]]],
+Dict[str, List[List[float]]],
+Dict[str, List[List[complex]]],</p>
+</dd>
+</dl>
+<p>],
+Dict[str, float],</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+<dt>]: list of dictionaries (or tuples of dictionaries) containing the</dt><dd><p>run results.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="API documentation for qoqo-tket" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, HQS Quantum Simulation GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
