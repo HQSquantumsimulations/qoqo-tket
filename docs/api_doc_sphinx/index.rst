@@ -4,7 +4,7 @@ API documentation for qoqo-tket
 .. autosummary::
    :toctree: generated/
 
-   qoqo-tket
+   qoqo_tket
 
 Indices and tables
 ==================
