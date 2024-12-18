@@ -62,7 +62,7 @@ jobs:
 
   test_python_macos:
     name: test_python_macos-${{ matrix.python.interpreter }}
-    runs-on: "macOS-13"
+    runs-on: "macOS-latest"
     strategy:
       matrix:
         python:
