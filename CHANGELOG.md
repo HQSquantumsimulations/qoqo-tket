@@ -2,6 +2,14 @@
 
 This changelog track changes to the qoqo-tket project starting at version v0.1.0
 
+## 0.2.0
+
+* Updated to pytket 2.4.
+
+## 0.1.3
+
+* Fixed sphinx issues.
+
 ## 0.1.2
 
 * Fix documentation.
