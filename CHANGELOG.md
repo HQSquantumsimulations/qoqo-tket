@@ -4,6 +4,7 @@ This changelog track changes to the qoqo-tket project starting at version v0.1.0
 
 ## 0.2.0
 
+* Added link to the API documentation in the readme.
 * Updated to pytket 2.4.
 
 ## 0.1.3

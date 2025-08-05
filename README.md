@@ -3,6 +3,8 @@
 # qoqo-tket
 Qoqo-tket is a backend for the qoqo quantum computing toolkit that compile or runs qoqo Circuits and Programs with the tket toolkit from Quantinuum.
 
+The API documentation is available [here](https://hqsquantumsimulations.github.io/qoqo-tket/).
+
 ## General Notes
 
 This software is still in the beta stage. Functions and documentation are not yet complete and breaking changes can occur.
