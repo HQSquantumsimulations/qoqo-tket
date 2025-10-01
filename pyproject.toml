@@ -23,7 +23,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-tests = ["coverage", "pytest", "pytket-projectq"]
+tests = ["coverage", "pytest", "pytket-projectq", "pytest-cov"]
 dev = [
     "bandit",
     "black",
