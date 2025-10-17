@@ -2,6 +2,10 @@
 
 This changelog track changes to the qoqo-tket project starting at version v0.1.0
 
+## Unpublished
+
+* Updated minimum supported Python version to 3.10.
+
 ## 0.2.0
 
 * Added link to the API documentation in the readme.
